@@ -30,16 +30,16 @@ that point to author and work records. To do that, first run
   
 This will generate an ``authors.pickle`` and a ``works.pickle`` file,
 containing sets of all authors and works ids referenced in the editions
-dump. Then, run ``select_linked.py`` against the full authors and works
-dumps, to select only the records referenced by the chosen editions
-dump.
+dump. 
 
-::
+Then, run ``select_linked.py`` against the full authors and works
+dumps, to select only the records referenced by the chosen editions
+dump::
+
   $ python select_linked.py ol_dump_authors_20120404.txt.bz2
 
 The command above generates a file named 
 ``ol_dump_authors_20120404_SAMPLE.txt.bz2``. Do the same for the works
 dump::
 
-::
   $ python select_linked.py ol_dump_works_20120404.txt.bz2
