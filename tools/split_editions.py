@@ -42,13 +42,14 @@ def shard_key(key, no_match=''):
 def main():
     infile_name = sys.argv[1]
     outfile_base_name, ext = os.path.splitext(infile_name)
+    opener = gzip.GzipFile if ext == '.gz' else open
 
     outfile_names = ['{0}_{1:02d}'.format(outfile_base_name, i) for i in range(100)]
     outfile_names.append(outfile_base_name+'_NONSTD_KEYS')
     outfiles = [io.open(fn, 'wt', encoding='utf-8') for fn in outfile_names]
 
     editions_ct = 0
-    with gzip.GzipFile(infile_name) as infile:
+    with opener(infile_name) as infile:
         for line_ct, line in enumerate(infile, 1):
             line = line.decode('utf-8')
             rec_type, rec_key, rec_rev, rec_ts, rec_json = line.split('\t')
